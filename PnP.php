@@ -224,10 +224,14 @@ function void( $args = array()) {
 /**
  * Query for the status of a completed transaction
  *
+ * @param array Arguments. Can specify the 'startdate' if you wish.
  * @return StdClass Return object of response values, as per the documentation
  */
-function query_trans() {
+function query_trans( $args = array() ) {
 
+    if ( !isset( $args['startdate'] ) ) {
+        $args['startdate'] = '19710101';
+    }
     if ( !$this->orderID ) {
         error_log("Can't request transaction status without an orderID");
         return array();
@@ -238,7 +242,7 @@ function query_trans() {
         'publisher-password' => $this->publisher_password,
         'mode'               => 'query_trans',
         'orderID'            => $this->orderID,
-        'startdate'          => '20001231'
+        'startdate'          => $args['startdate']
     );
 
     return $this->pnp_results( $post_vals );
