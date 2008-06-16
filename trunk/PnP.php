@@ -266,9 +266,10 @@ payments to those accounts at a later date.
  *
  * Return object contains 5 attributes: FinalStatus, auth-msg, MErrMsg,
  * TranCount, and members. TranCount contains the number of members.
- * members contains a StdClass object for each of those members. Not yet
- * sure what attributes those members will have. Will document when I
- * know.
+ * members contains a StdClass object for each of those members. Each
+ * member contains attributes username, password, enddate, and
+ * purchaseid, and also an attribute 'key' which indicates the axxxxx
+ * key where the original data appears in the return object.
  *
  * There will also be methods a00000 - axxxxx for numbers from 0 to
  * TranCount, which will return a url-encoded version of the member
@@ -289,14 +290,13 @@ function list_members( $args = array( 'status' => 'all' ) ) {
 
     if ( isset( $members->TranCount )) {
         $count = $members->TranCount;
-        $m = array();
 
-        for ( $c = 0; $c <= $count; $c++ ) {
+        for ( $c = 0; $c < $count; $c++ ) {
             $key = 'a' . sprintf('%05d', $c);
-            $member = parse_str( $members->$key );
-            $m[] = (object)$member;    
+            parse_str( $members->$key, $m );
+            $m['key'] = $key;
+            $members->members[] = (object)$m;
         }
-        $members->members = $m;
     }
 
     return $members;
@@ -335,13 +335,10 @@ function pnp_results( $post_args = array() ) {
     #curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);  // Upon problem, uncomment for additional Windows 2003 compatibility
 
     // perform post
-    $pnp_result_page    = curl_exec($pnp_ch);
-    $pnp_result_decoded = urldecode($pnp_result_page);
+    $response = curl_exec($pnp_ch);
+    parse_str( $response, $results_array );
 
-    // decode the result page and put it into transaction_array
-    parse_str( $pnp_result_decoded, $pnp_transaction_array);
-
-    $results = (object) $pnp_transaction_array;
+    $results = (object) $results_array;
     return $results;
 }
 
