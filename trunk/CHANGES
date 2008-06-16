@@ -1,5 +1,11 @@
+0.4
+16-Jun-2008
+Corrects bug in list_members - members returned as individual member
+objects.
+
 0.3
-16-Jun-2008 Initial import to GoogleCode
+16-Jun-2008
+Initial import to GoogleCode
 
 0.2
 Implemented __call() method so that undocumented or unimplemented methods can be called directly.
