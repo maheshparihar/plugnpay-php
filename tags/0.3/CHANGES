@@ -1,0 +1,9 @@
+0.3
+16-Jun-2008 Initial import to GoogleCode
+
+0.2
+Implemented __call() method so that undocumented or unimplemented methods can be called directly.
+
+0.1
+Implemented auth, query_trans, list_members
+
