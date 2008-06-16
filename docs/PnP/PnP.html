@@ -336,14 +336,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">list_members</span> (line <span class="line-number">280</span>)
+		<span class="method-title">list_members</span> (line <span class="line-number">281</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">List all active/expired profiles and related password info</p>
 <p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-var">$pnp&nbsp;</span>=&nbsp;<span class="src-key">new&nbsp;</span><span class="src-id"><a href="../PnP/PnP.html">PnP</a></span><span class="src-sym">(</span><span class="src-sym">)</span><span class="src-sym">;</span></div></li>
 <li><div class="src-line">&nbsp;<span class="src-var">$members&nbsp;</span>=&nbsp;<span class="src-var">$pnp</span><span class="src-sym">-&gt;</span><a href="../PnP/PnP.html#methodlist_members">list_members</a><span class="src-sym">(&nbsp;</span><span class="src-key">array</span><span class="src-sym">(&nbsp;</span><span class="src-str">'status'&nbsp;</span>=&gt;&nbsp;<span class="src-str">'active'&nbsp;</span><span class="src-sym">)&nbsp;)</span><span class="src-sym">;</span></div></li>
-</ol></div></p><p>Possible arguments are 'status' ('active', 'expired', or 'all') and  'crypt' ('crypt', 'md5', or 'none')</p><p>Return object contains 5 attributes: FinalStatus, auth-msg, MErrMsg,  TranCount, and members. TranCount contains the number of members.  members contains a StdClass object for each of those members. Not yet  sure what attributes those members will have. Will document when I  know.</p><p>There will also be methods a00000 - axxxxx for numbers from 0 to  TranCount, which will return a url-encoded version of the member  data, which you can parse_str() and do with as you like.</p></p>
+</ol></div></p><p>Possible arguments are 'status' ('active', 'expired', or 'all') and  'crypt' ('crypt', 'md5', or 'none')</p><p>Return object contains 5 attributes: FinalStatus, auth-msg, MErrMsg,  TranCount, and members. TranCount contains the number of members.  members contains a StdClass object for each of those members. Each  member contains attributes username, password, enddate, and  purchaseid, and also an attribute 'key' which indicates the axxxxx  key where the original data appears in the return object.</p><p>There will also be methods a00000 - axxxxx for numbers from 0 to  TranCount, which will return a url-encoded version of the member  data, which you can parse_str() and do with as you like.</p></p>
 	<ul class="tags">
 				<li><span class="field">return:</span> Object of return values, documented in example code</li>
 			</ul>
@@ -451,7 +451,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">__call</span> (line <span class="line-number">362</span>)
+		<span class="method-title">__call</span> (line <span class="line-number">359</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -488,7 +488,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 16 Jun 2008 08:50:47 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+		Documentation generated on Mon, 16 Jun 2008 12:21:45 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
 	</p>
 	</div></body>
 </html>
