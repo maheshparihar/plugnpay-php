@@ -20,7 +20,8 @@ So, here you go.
 This code is released under the terms of the ASL2 (Apache Software
 License, version 2).
 
-Please send patches or suggestions to me at r@tm3.org
+Hosted at http://code.google.com/p/plugnpay-php
+Sign up and join the conversation.
 
 INSTALLATION
 
