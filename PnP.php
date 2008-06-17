@@ -222,6 +222,64 @@ function void( $args = array()) {
 }
 
 /**
+ * Do a new authorizaction, using information from a previous
+ * authorization, so that you don't need to know the payment information
+ * again.
+ *
+ * You may explicitly pass the prevorderid in the argument list, or you
+ * may create a PnP object with the orderID of the previous transaction
+ * - which ever is more convenient.
+ *
+ * <code>
+ * $pnp = new PnP( array( orderID => $prevorderID ));
+ * $results = $pnp->authprev( array( 'card-amount' => '123.45' ));
+ * $neworderid = $pnp->orderID;
+ * <code>
+ *
+ * Or i f you prefer:
+ *
+ * <code>
+ * $pnp = new PnP();
+ * $results = $pnp->authprev( array( 'prevorderid' => $prevorderID,
+ *                                   'card-amount' => '123.45' ));
+ * $neworderid = $pnp->orderID;
+ * </code>
+ *
+ * 'card-amount' is a required argument.
+ *
+ * 'reauthtype' is an optional argument.
+ *
+ * @param array Argument array
+ * @return StdClass Return object
+ */
+function authprev( $args = array() ) {
+    // If an object already has an orderID, assume that's the
+    // prevorderid, otherwise, require that one was passed in.
+    if ( isset( $this->orderID ) ) {
+        $prevorderid = $this->orderID;
+    } elseif ( isset( $args['prevorderid'] ) ) {
+        $prevorderid = $args['prevorderid'];
+    } else {
+        error_log( 'You must specify the previous orderID, either by creating a PnP object with that ID, or by explicitly passing it in the argument list. Please see the documentation.' );
+        return false;
+    }
+
+    if ( !isset( $args['card-amount']) || $args['card-amount'] == 0 ) {
+        error_log( 'card-amount is a required argument to authprev.' );
+        return false;
+    }
+
+    $args = array_merge( $args, array(
+          'mode'               => 'authprev',
+          'prevorderid'        => $prevorderid,
+          'publisher-name'     => $this->publisher_name,
+          'publisher-password' => $this->publisher_password,
+    ));
+
+    return $this->pnp_results( $args );
+}
+
+/**
  * Query for the status of a completed transaction
  *
  * @param array Arguments. Can specify the 'startdate' if you wish.
