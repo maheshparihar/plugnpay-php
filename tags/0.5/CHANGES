@@ -1,0 +1,19 @@
+0.5
+17-Jun-2008
+Adds authprev method.
+
+0.4
+16-Jun-2008
+Corrects bug in list_members - members returned as individual member
+objects.
+
+0.3
+16-Jun-2008
+Initial import to GoogleCode
+
+0.2
+Implemented __call() method so that undocumented or unimplemented methods can be called directly.
+
+0.1
+Implemented auth, query_trans, list_members
+
