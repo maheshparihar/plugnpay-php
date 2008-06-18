@@ -231,7 +231,7 @@ function void( $args = array()) {
  * - which ever is more convenient.
  *
  * <code>
- * $pnp = new PnP( array( orderID => $prevorderID ));
+ * $pnp = new PnP( array( 'orderID' => $prevorderID ));
  * $results = $pnp->authprev( array( 'card-amount' => '123.45' ));
  * $neworderid = $pnp->orderID;
  * <code>
