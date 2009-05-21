@@ -36,7 +36,7 @@ $p->auth(
         'card-amount' => '100.23',
         'card-exp'    => '11/09',
         'ship-name'   => 'cardtest',
-        'cc-cvv'      => '123',
+        'card-cvv'      => '123',
     )
 );
 print_r( $p->query_trans );
