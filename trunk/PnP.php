@@ -81,7 +81,7 @@ don't have on our account.
  * state
  * zip
  * country
- * cc-cvv (optional)
+ * card-cvv (optional)
  * </code>
  *
  * Finally, the payment_values array may contain an array named
@@ -388,7 +388,8 @@ function pnp_results( $post_args = array() ) {
         return array();
     }
 
-    $http_query = http_build_query( $post_args );
+    $http_query = str_replace("&amp;", "&", 
+            ( http_build_query( $post_args ) );
 
     // init curl handle
     $pnp_ch = curl_init( $this->apiurl );
