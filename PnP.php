@@ -389,7 +389,7 @@ function pnp_results( $post_args = array() ) {
     }
 
     $http_query = str_replace("&amp;", "&", 
-            ( http_build_query( $post_args ) );
+            ( http_build_query( $post_args ) ));
 
     // init curl handle
     $pnp_ch = curl_init( $this->apiurl );
